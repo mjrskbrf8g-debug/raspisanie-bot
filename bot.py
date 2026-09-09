@@ -260,12 +260,11 @@ async def cmd_today(message: Message):
 @dp.message(F.text)
 async def handle_date_request(message: Message):
     """Обрабатывает свободный текст с датой (не команду).
-    Команды выше по коду перехватываются раньше и сюда не попадают."""
+    Команды выше по коду перехватываются раньше и сюда не попадают.
+    Если текст не похож на дату - бот молчит (чтобы не мешать обычной
+    переписке в чате, особенно групповом)."""
     requested_date = parse_user_date(message.text)
     if requested_date is None:
-        await message.answer(
-            "Не поняла дату. Напиши, например: 12.09 или 12 сентября."
-        )
         return
 
     text = build_schedule_message(requested_date)
