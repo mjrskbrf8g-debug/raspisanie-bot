@@ -171,7 +171,7 @@ def build_schedule_message(d: date) -> Optional[str]:
         lines = [header]
         for i, (time_str, subject, link) in enumerate(lessons, start=1):
             link_part = f" - {link}" if link else ""
-            lines.append(f"{i}) {time_str} - {subject}{link_part}")
+            lines.append(f"{i}. {time_str} - {subject}{link_part}")
         conn.close()
         return "\n".join(lines)
 
